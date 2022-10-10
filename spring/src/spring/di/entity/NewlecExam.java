@@ -1,6 +1,4 @@
-package spring.di;
-
-import spring.di.entity.Exam;
+package spring.di.entity;
 
 public class NewlecExam implements Exam {
 
