@@ -8,7 +8,7 @@ public class InlineExamConsole implements ExamConsole {
 	
 	
 	public InlineExamConsole() {
-		// 
+		
 	}
 	
 	public InlineExamConsole( Exam exam ) {

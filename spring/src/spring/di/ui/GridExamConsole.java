@@ -18,7 +18,7 @@ public class GridExamConsole implements ExamConsole {
 
 	@Override
 	public void print() {
-	
+		System.out.println( "이것은 잭 스나이더의 코드입니다." );
 		System.out.println( "┌──────────┐─────────┐" );
 		System.out.println( "│	total	│	avg	  │" );
 		System.out.println( "└──────────└─────────┘" );
