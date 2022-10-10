@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- 
@@ -8,7 +9,80 @@
 		-> 클래스의 이름은 중복이 될 수 있으니까 반드시 패키지명까지 같이 작성해준다.
 		id = 그 객체의 변수명은 어떻게 할 것인가?	
 	 -->
-	<bean id = "exam" class = "spring.di.entity.NewlecExam"/>
+	<bean id = "exam" class = "spring.di.entity.NewlecExam"
+		p:kor="10"
+		p:eng="10"
+		p:math="10"
+		p:com="10"
+	>
+		<!--
+			property 태그는 setter의 역할을 한다.
+			속성중에 name은 해당 객체의 필드를 의미하고
+			value의 값으로 필드의 값을 초기화 할 수 있다.
+			
+			예시)
+			private int kor; 이라는 필드가 있을떄
+			<property name = "kor" value = "20" />
+			과 같이 해당 객체의 필드 내용을 초기화 할 수 있다.
+			 
+			*주의* 
+			property 태그는 setter를 사용하기 때문에 당연히
+			해당객체에서 그 필드에 대한 setter메소드도 가지고 있어야 한다. 
+			
+			*tip*
+			xml 지시어로 객체의 필드를 초기화 하는 방법은 두 가지가 있다.
+			1. property 태그안에서 속성으로 하는 방법
+			2. property태그 안에서 다시 value태그를 만들어 하는 방법
+
+		 -->
+		
+		  
+		<!-- 필드 초기화 방법 1 -->
+		<!--  
+		<property name = "kor" value = "10"/>
+		<property name = "eng" value = "10"/>
+		<property name = "math" value = "10"/>
+		-->
+		<!-- 필드 초기화 방법 2 -->
+		<!--  
+		<property name = "com">
+			<value>10</value>
+		</property> 
+		--> 
+		
+		
+		<!-- 생성자를 통해 Injection 하기 -->
+		<!--	name 은 필드의 이름을 선택한다.
+				value는 그 필드의 값을 초기화 한다.
+				type 은 그 필드의 자료형을 선언해준다.
+				*type같은 경우는 매개변수의 수가 같은
+				생성자가 존재할 경우 타입없이는 서로를 구분할
+				수 없기 때문에 타입을 추가해준다.
+		 -->
+		<!-- 
+		<constructor-arg name = "kor" value = "10"/>
+		<constructor-arg name = "eng" value = "20"/>
+		<constructor-arg name = "com" value = "30"/>
+		<constructor-arg name = "math" value = "40"/>
+		 -->
+		
+		
+		<!-- 
+		
+			namespace에서 p를 추가할 경우
+			생성자를 통해 초기화 할 때
+			bean태그의 속성으로
+			p:필드명 = "값"
+			과 같은 형태로 필드를 초기화 할 수 있다.
+		
+		 -->
+		
+		
+		 
+		 
+		
+		
+	</bean>
 	
 	<!-- 
 		ExamConsole console = new GridExamConsole();
@@ -42,8 +116,19 @@
 			 
 		 -->
 		<property name="exam" ref = "exam"/>
+		
 	</bean>
 	
+	<!-- 생성자를 통한 객체 의존성 주입 -->
+	<!--
+		InlineExamConsole 클래스는 객체가 생성될 때 Exam타입의 객체를 받는 생성자를 통해
+		객체를 생성한다. 
+		그래서  <constructor-arg ref = "exam"/> 를 통해 생성자에 주입할 객체를 선언해준다.
+		*exam은 위에서 만든 spring.di.entity.NewlecExamx타입의 bean태그 id값.
+	 -->
+	<bean id = "InlineExamConsole" class = "spring.di.ui.InlineExamConsole">
+		<constructor-arg ref = "exam"/>	
+	</bean>
 	
 	
 
