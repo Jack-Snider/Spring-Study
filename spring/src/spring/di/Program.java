@@ -1,11 +1,14 @@
 package spring.di;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import spring.di.entity.Exam;
+import spring.di.entity.NewlecExam;
 import spring.di.ui.ExamConsole;
-import spring.di.ui.InlineExamConsole;
 
 public class Program {
 	
@@ -23,7 +26,7 @@ public class Program {
 				new ClassPathXmlApplicationContext( "/spring/di/settings.xml" );
 		
 		Exam exam = context.getBean( Exam.class );
-		System.out.println( exam.toString() );
+		//System.out.println( exam.toString() );
 		
 		
 		//	bean의 id로 꺼내게 된다면 반환타입이 Object이기 떄문에 casting을 해줘야 한다.
@@ -32,10 +35,29 @@ public class Program {
 		//	자료형으로 꺼내기
 		//	ExamConsole console = context.getBean( ExamConsole.class );
 		//	ExamConsole console = context.getBean( InlineExamConsole.class );
-		ExamConsole console = ( ExamConsole ) context.getBean( "InlineExamConsole" );
+		
+		
+		//ExamConsole console = ( ExamConsole ) context.getBean( "InlineExamConsole" );
+		
+		
 		//	new InlineExamConsole()
 		
-		console.print();
+		//console.print();
+		
+		
+		
+		//-------------------------------------
+		
+		// Collection bean객체 만들기
+		
+		// java 코드
+		//List<Exam> exams = new ArrayList<>();
+		List<Exam> exams = ( List<Exam> ) context.getBean( "exams" );
+		//exams.add( new NewlecExam( 1,1,1,1 ) );
+		
+		for( Exam e : exams ) {
+			System.out.println( e );
+		}
 		
 	}
 	
