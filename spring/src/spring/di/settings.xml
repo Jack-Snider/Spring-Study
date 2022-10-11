@@ -2,7 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 	<!-- 
 		class : 어떠한 클래스를 객체화 할것인가?
@@ -130,6 +132,37 @@
 		<constructor-arg ref = "exam"/>	
 	</bean>
 	
+	
+	<!-- 컬랙션 bean객체 만들기 -->
+	<bean id = "exams" class = "java.util.ArrayList">
+		<!--	컬랙션은 생성자로 객체를 초기화 할 수 있어서
+			 	<constructor-arg>를 사용한다.
+		 -->
+		<constructor-arg>
+			<list>
+				<bean class = "spring.di.entity.NewlecExam" p:kor = "1" p:eng = "1" />
+				<ref bean = "exam"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	
+	<!--	그런데 위와 같이 매번 xml 태그로 저렇게 컬랙션을 만들어 줘야 하나?
+			너무 불편하다 그래서 util이라는 namespace를 사용하면 된다.
+	 -->
+	
+	<util:list id = "exams2" list-class="java.util.ArrayList">
+		<bean class = "spring.di.entity.NewlecExam" p:kor = "1" p:eng = "1" />
+		<ref bean = "exam"/>		
+	</util:list>
+	
+	<!--
+		★위와 같이 한다면 bean객체의 id가 "exams"인 객체와 같은 효과의 리스트 객체를 만들 수 있다.★ 
+	 -->
+		
+		
+			
+		
 	
 
 </beans>
