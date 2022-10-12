@@ -28,21 +28,19 @@ public class Program {
 		Exam exam = context.getBean( Exam.class );
 		//System.out.println( exam.toString() );
 		
-		
 		//	bean의 id로 꺼내게 된다면 반환타입이 Object이기 떄문에 casting을 해줘야 한다.
 		//	ExamConsole console = ( ExamConsole ) context.getBean( "console" );
 		
 		//	자료형으로 꺼내기
-		//	ExamConsole console = context.getBean( ExamConsole.class );
+			ExamConsole console = (ExamConsole) context.getBean( "console" );
 		//	ExamConsole console = context.getBean( InlineExamConsole.class );
 		
 		
-		//ExamConsole console = ( ExamConsole ) context.getBean( "InlineExamConsole" );
 		
-		
+			
 		//	new InlineExamConsole()
 		
-		//console.print();
+		console.print();
 		
 		
 		
@@ -52,12 +50,12 @@ public class Program {
 		
 		// java 코드
 		//List<Exam> exams = new ArrayList<>();
-		List<Exam> exams = ( List<Exam> ) context.getBean( "exams" );
+		//List<Exam> exams = ( List<Exam> ) context.getBean( "exams" );
 		//exams.add( new NewlecExam( 1,1,1,1 ) );
 		
-		for( Exam e : exams ) {
-			System.out.println( e );
-		}
+//		for( Exam e : exams ) {
+//			System.out.println( e );
+//		}
 		
 	}
 	

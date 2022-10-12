@@ -1,5 +1,7 @@
 package spring.di.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import spring.di.entity.Exam;
 
 public class GridExamConsole implements ExamConsole {
@@ -18,7 +20,7 @@ public class GridExamConsole implements ExamConsole {
 
 	@Override
 	public void print() {
-		System.out.println( "이것은 잭 스나이더의 코드입니다." );
+		
 		System.out.println( "┌──────────┐─────────┐" );
 		System.out.println( "│	total	│	avg	  │" );
 		System.out.println( "└──────────└─────────┘" );
@@ -30,6 +32,7 @@ public class GridExamConsole implements ExamConsole {
 
 
 	@Override
+	@Autowired // xml에서 setter방법인 property를 하는거와 같은 효과의 Annotation이다.
 	public void setExam( Exam exam ) {
 		
 		this.exam = exam;

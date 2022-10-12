@@ -8,4 +8,4 @@ public interface ExamConsole {
 
 	void setExam(Exam exam);
 	
-}
+} 
