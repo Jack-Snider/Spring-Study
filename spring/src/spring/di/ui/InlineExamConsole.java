@@ -1,5 +1,7 @@
 package spring.di.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import spring.di.entity.Exam;
 
 public class InlineExamConsole implements ExamConsole {
@@ -25,6 +27,7 @@ public class InlineExamConsole implements ExamConsole {
 
 
 	@Override
+	@Autowired // xml에서 setter방법인 property를 하는거와 같은 효과의 Annotation이다.
 	public void setExam( Exam exam ) {
 		
 		this.exam = exam;
